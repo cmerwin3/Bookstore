@@ -40,4 +40,10 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+db.Order.hasMany(db.OrderItem, {as: "items"});
+    db.OrderItem.belongsTo(db.Order, {
+        foreignKey: "order_id",
+        as: "order"
+    });
+
 module.exports = db;

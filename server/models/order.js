@@ -45,7 +45,10 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'Order',
       tableName: 'order',
       freezeTableName: true,
+      underscored: true,
       timestamps: false
     });
-      return Order;
-    };
+    
+    return Order;
+  };
+

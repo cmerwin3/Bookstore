@@ -44,15 +44,21 @@ async function populateAndSaveItems(req, orderId) {
     return newItems;
 }
 
-//TODO Add get for orders for customers previous orders
 
-// router.get('/orders', bodyParser.json(), async(req, res) => {
-//     // const customer =  await Customer.findOne({where : {id : req.body.customer_id}});
-//     // console.log("customer class" + "" + customer);
-//     let order_list = await Order.findAll({where : {customer_id : req.body.customer_id}});
-//     console.log("customer class" + "" + order_list);
 
-// });
+router.get('/orders', bodyParser.json(), async(req, res) => {
+    let order_list = await Order.findAll({where : 
+        {customer_id : req.query.customer_id},
+        include: ["items"]
+    });
+    console.log("orders" + "" + order_list);
+    if (order_list.length === 0) {
+        res.status(404).send("Not Found");
+        return;
+    }
+
+    res.json(order_list);
+});
 
 
 module.exports = router;
