@@ -14,19 +14,15 @@ router.get('/genres', async (req, res)=>{
         attributes: ['genre'],
         group: ['genre']
     });
-
-    const returnList = genreList.map(item => item.genre);
-    res.json(returnList);
+    res.json(genreList);
 })
 
 function buildWhereClause(req){
     const genreParm = req.query.genre;
     const keywordParm = req.query.keyword;
     
-    
     let genreClause = {};
     let keywordClause = {};
-    
     
     if(genreParm != undefined) {
         genreClause = {genre: genreParm};
