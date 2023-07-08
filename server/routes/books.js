@@ -9,33 +9,40 @@ router.get('/books', async (req, res) => {
     res.json(bookList);
 })
 
+router.get('/genres', async (req, res)=>{
+    const genreList = await Book.findAll({
+        attributes: ['genre'],
+        group: ['genre']
+    });
+
+    const returnList = genreList.map(item => item.genre);
+    res.json(returnList);
+})
+
 function buildWhereClause(req){
     const genreParm = req.query.genre;
-    const titleParm = req.query.title;
-    const authorParm = req.query.author;
+    const keywordParm = req.query.keyword;
+    
     
     let genreClause = {};
-    let titleClause = {};
-    let authorClause = {};
+    let keywordClause = {};
+    
     
     if(genreParm != undefined) {
         genreClause = {genre: genreParm};
     }
-    if(titleParm != undefined) {
-        titleClause = {title: {[Op.like] : ('%' + titleParm + '%')}}
-    }
-    if(authorParm != undefined) {
-        authorClause = {[Op.or] : [
-            {author_lastname: {[Op.like] : ('%' + authorParm + '%')}},
-            {author_firstname: {[Op.like] : ('%' + authorParm + '%')}}
+    if(keywordParm != undefined) {
+        keywordClause = {[Op.or] : [
+            {author_lastname: {[Op.like] : ('%' + keywordParm + '%')}},
+            {author_firstname: {[Op.like] : ('%' + keywordParm + '%')}},
+            {title: {[Op.like] : ('%' + keywordParm + '%')}}
         ]}
     }
     
     let whereClause = {
         where: {
             ...genreClause,
-            ...titleClause,
-            ...authorClause
+            ...keywordClause
         }
     };
     
