@@ -1,0 +1,13 @@
+.registration {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+}
+
+.registration label {
+    display: block;
+    padding-top: 10px;
+}
+

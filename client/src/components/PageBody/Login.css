@@ -1,0 +1,16 @@
+.login { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.login__register {
+    margin-top: 15px;
+}
+
+.login__register-link{
+    color: #94618E;
+    padding-left: 10px;
+}

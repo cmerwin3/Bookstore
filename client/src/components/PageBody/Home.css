@@ -1,0 +1,26 @@
+.home {
+    margin: 5px;
+    
+}
+
+.home__item-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.home__item-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    border: 2px solid #94618E;
+    margin: 10px;
+    padding: 10px;
+}
+
+.home__item-image {
+    margin: 5px;
+}
+
+.home__item-text {
+    margin: 5px;
+}

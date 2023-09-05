@@ -1,0 +1,10 @@
+.header-bar__login-status {
+    float: right;
+    display: inline;
+    margin-left: auto;
+    margin-right: 0;
+    border: 2px solid black;
+    padding: 2px;
+    text-shadow: 0px 1px 1px grey;
+    border-radius: 20px;
+}

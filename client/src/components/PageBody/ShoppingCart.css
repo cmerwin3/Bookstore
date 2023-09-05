@@ -1,0 +1,27 @@
+.shopping-cart {
+    margin: 5px;
+    
+}
+
+.shopping-cart__item-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.shopping-cart__item-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    border: 2px solid lightgrey;
+    margin: 10px;
+    padding: 10px;
+}
+
+.shopping-cart__item-image {
+    margin: 5px;
+}
+
+.shopping-cart__item-text {
+    margin: 5px;
+}
+

@@ -1,11 +1,24 @@
 const express = require('express');
 const {sequelize, Book} = require('../models');
-const { where, Op } = require('sequelize');
+const { where, Op} = require('sequelize');
 const router = express.Router()
 
 router.get('/books', async (req, res) => {
     const whereClause = buildWhereClause(req);
-    const bookList = await Book.findAll(whereClause);
+    const orderClause = buildOrderClause(req);
+    const limitClause = buildLimitClause(req);
+    
+    const totalClause= {
+        ...whereClause,
+        ...orderClause,
+        ...limitClause
+    };
+    
+    console.log("total clause" + JSON.stringify(totalClause));
+    const bookList = await Book.findAll(totalClause);
+    // if (bookList.length === 0){
+    //     res.json("No results found.")
+    // };
     res.json(bookList);
 })
 
@@ -25,13 +38,13 @@ function buildWhereClause(req){
     let keywordClause = {};
     
     if(genreParm != undefined) {
-        genreClause = {genre: genreParm};
+        genreClause = {genre: decodeURIComponent(genreParm)}
     }
     if(keywordParm != undefined) {
         keywordClause = {[Op.or] : [
-            {author_lastname: {[Op.like] : ('%' + keywordParm + '%')}},
-            {author_firstname: {[Op.like] : ('%' + keywordParm + '%')}},
-            {title: {[Op.like] : ('%' + keywordParm + '%')}}
+            {author_lastname: {[Op.like] : ('%' + decodeURIComponent(keywordParm) + '%')}},
+            {author_firstname: {[Op.like] : ('%' + decodeURIComponent(keywordParm) + '%')}},
+            {title: {[Op.like] : ('%' + decodeURIComponent(keywordParm) + '%')}}
         ]}
     }
     
@@ -41,9 +54,49 @@ function buildWhereClause(req){
             ...keywordClause
         }
     };
-    
-    console.log(whereClause);
     return whereClause;
+}
+
+function buildOrderClause(req){
+    const orderParm = req.query.order;
+    let orderClause = {};
+    
+    console.log("random param" + JSON.stringify(orderParm));
+
+    if(orderParm === 'random') {
+        orderClause = {
+            order: sequelize.random()
+        }
+    }
+    else if(orderParm === 'author') {
+        orderClause = {
+            order: [['author_lastname', 'ASC']]
+        }
+    }
+    else if(orderParm === 'title') {
+        orderClause = {
+            order: [['title', 'ASC']]
+        }
+    }
+    else if(orderParm === 'genre') {
+        orderClause = {
+            order: [['genre', 'ASC']]
+        }
+    }
+    console.log(JSON.stringify(orderClause));
+    return orderClause; 
+}
+
+function buildLimitClause(req) {
+    const limitParm = req.query.limit;
+    let limitClause = {};
+
+    if (limitParm != undefined) {
+        limitClause = {
+            limit: limitParm
+        }
+    }
+    return limitClause;
 }
 
 module.exports = router;

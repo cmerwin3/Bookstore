@@ -1,0 +1,40 @@
+.book-item__item-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    border: 2px solid #94618E;
+    margin: 10px;
+    padding: 10px;
+}
+
+.book-item__item-image {
+    margin: 5px;
+}
+
+.book-item__item-text {
+    margin: 5px;
+}
+
+.book-item__item-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.book-item__modal {
+    position: static;
+    padding: 20px;
+    border: 2px solid #94618E
+}
+
+.book-item__overlay{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.8;
+    background-color: rgba(125,125,125, 0.8);
+}
