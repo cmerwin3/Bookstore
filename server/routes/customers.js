@@ -3,7 +3,12 @@ const {body, validationResult} = require('express-validator');
 const bodyParser = require('body-parser');
 const {sequelize, Customer} = require('../models');
 const { Sequelize } = require('sequelize');
-const router = express.Router()
+const CryptoJS = require("crypto-js");
+const router = express.Router();
+
+
+const ENCRYPT_KEY = 'drowssap';
+
 
 router.post('/customers', bodyParser.json(),
     body("email")
@@ -47,11 +52,16 @@ router.get('/customers', async (req, res) => {
 function buildWhereClause(req){
     const email = decodeURIComponent(req.query.email);
     const password = decodeURIComponent(req.query.password);
+    //Decrypt Password
+    const decryptedPassword = CryptoJS.AES.decrypt(password, ENCRYPT_KEY);
+    console.log("decryption" + decryptedPassword);
+    const readablePassword = decryptedPassword.toString(CryptoJS.enc.Utf8);
+    console.log("readable" + readablePassword);
 
     let whereClause = {
         where: {
             email: email,
-            password: password
+            password: readablePassword
         }
     };
     return whereClause;

@@ -14,6 +14,7 @@ function HeaderBar({appState, setAppState}) {
         }); 
     }
     
+   
     return (
         <div className='header-bar color-temp'> 
             <div onClick={() => {homeHandler()}} className='header-bar__home clickable-text'> Bookstore  </div>

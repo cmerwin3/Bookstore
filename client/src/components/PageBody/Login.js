@@ -1,7 +1,8 @@
 import AppState from "../../AppState";
 import {useState, useEffect} from 'react';
-import { REST_URL } from "../../constants";
+import { REST_URL, ENCRYPT_KEY} from "../../constants";
 import './Login.css';
+const CryptoJS = require("crypto-js");
 
 
 function Login({appState ,setAppState}) {
@@ -15,44 +16,31 @@ function Login({appState ,setAppState}) {
         const restUrl = new URL(`${REST_URL}customers`);
        
         restUrl.searchParams.append('email', `${encodeURIComponent(loginEmail)}`);
-        restUrl.searchParams.append('password', `${encodeURIComponent(loginPassword)}`);
-        
-        // const requestOptions = {
-        //     method: 'GET',
-        //     headers: {'Content-Type': 'application/json'},
-        //     body: JSON.stringify({
-        //         email: loginEmail,
-        //         password: loginPassword
-        //     })
-        // }
-        // console.log(JSON.stringify(requestOptions));
-        console.log("1-" + restUrl.toString());
+        //Encrypt password
+        var encryptedPassword = CryptoJS.AES.encrypt(loginPassword, ENCRYPT_KEY);
+        console.log("encryption" + encryptedPassword);
+        restUrl.searchParams.append('password', `${encodeURIComponent(encryptedPassword)}`);
+    
 
         fetch(restUrl.toString())
             .then((response) => {
                 console.log("response1 = " + JSON.stringify(response));
                 console.log("response2 = " + response.status);
                 if (!response.ok) {
-                    console.log("response before throw");
                     throw new Error('not found')
                 }
                 return response.json();
             })    
             .then((data) => {
-                console.log("inside data 1: " + data );
-                console.log("inside data 2: " + JSON.stringify(data));
                 setAppState((previousAppState) => {
                     let newAppState = previousAppState.clone();
                     newAppState.user = data;
                     // TODO Update to return user back to previous display page dynamically 
                     newAppState.displayMode = AppState.DISPLAY_MODE_HOME;
-                    console.log( "new =" + JSON.stringify(newAppState.user));
                     return newAppState;
                 });   
             })
             .catch(error => {
-                console.log("error1 = " + error);
-
                 console.log("error = " + JSON.stringify(error));
                 setErrorMessage('Email and password combination not verified please try again.');
             })   
