@@ -14,7 +14,6 @@ router.get('/books', async (req, res) => {
         ...limitClause
     };
     
-    console.log("total clause" + JSON.stringify(totalClause));
     const bookList = await Book.findAll(totalClause);
     // if (bookList.length === 0){
     //     res.json("No results found.")
@@ -60,8 +59,6 @@ function buildWhereClause(req){
 function buildOrderClause(req){
     const orderParm = req.query.order;
     let orderClause = {};
-    
-    console.log("random param" + JSON.stringify(orderParm));
 
     if(orderParm === 'random') {
         orderClause = {
@@ -83,7 +80,6 @@ function buildOrderClause(req){
             order: [['genre', 'ASC']]
         }
     }
-    console.log(JSON.stringify(orderClause));
     return orderClause; 
 }
 

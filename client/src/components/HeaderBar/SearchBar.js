@@ -26,22 +26,16 @@ function SearchBar({appState, setAppState}) {
    
     function searchHandler(event) {
         event.preventDefault();
-        console.log('genre =' + genre);
-        console.log('keyword =' + keyword);
         
         const restUrl = new URL(`${REST_URL}books`);
         
         if (genre !== 'all'){
-            restUrl.searchParams.append('genre', `${encodeURIComponent(genre)}`); 
-            console.log(restUrl.toString());
+            restUrl.searchParams.append('genre', `${encodeURIComponent(genre)}`);
         }
 
         if (keyword !== undefined) {
             restUrl.searchParams.append('keyword', `${encodeURIComponent(keyword)}`); 
-            console.log(restUrl.toString());
         }
-        
-        console.log(restUrl.toString());
 
         fetch(restUrl.toString())
             .then((response) => response.json())    
