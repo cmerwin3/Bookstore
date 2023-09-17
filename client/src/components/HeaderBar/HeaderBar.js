@@ -1,6 +1,7 @@
 import LoginStatus from "./LoginStatus";
 import SearchBar from "./SearchBar";
-import CartIcon from "./CartIcon"
+import CartIcon from "./CartIcon"; 
+import AppState from "../../AppState";
 import './HeaderBar.css'
 
 function HeaderBar({appState, setAppState}) {
@@ -9,7 +10,7 @@ function HeaderBar({appState, setAppState}) {
 
         setAppState((previousAppState) => {
             let newAppState = previousAppState.clone();
-            newAppState.displayMode = appState.DISPLAY_MODE_HOME;
+            newAppState.displayMode = AppState.DISPLAY_MODE_HOME;
             return newAppState;
         }); 
     }

@@ -17,8 +17,8 @@ function CartIcon({appState, setAppState}) {
     }
 
     return (
-        <button onClick= {cartPageNavigation} 
-            className='cart-icon'> Shopping Cart: {cartCount}</button>
+        <div onClick= {cartPageNavigation} 
+            className='cart-icon'> Shopping Cart: {cartCount}</div>
     );
 
 

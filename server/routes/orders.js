@@ -51,7 +51,6 @@ router.get('/orders', bodyParser.json(), async(req, res) => {
         {customer_id : req.query.customer_id},
         include: ["items"]
     });
-    console.log("orders" + "" + order_list);
     if (order_list.length === 0) {
         res.status(404).send("Not Found");
         return;

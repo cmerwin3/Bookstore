@@ -15,9 +15,8 @@ function Registration({appState ,setAppState}) {
         state : '',
         zip : ''
     });
+    
     const [errorMessage, setErrorMessage]= useState('');
-
-    console.log('inside registration');
 
     function registrationHandler(event) {
         event.preventDefault();
@@ -32,11 +31,13 @@ function Registration({appState ,setAppState}) {
 
         fetch(restUrl.toString(), requestOptions)
             .then((response) => {
-                console.log("response = " + JSON.stringify(response));
                 if (!response.ok) {
-                    console.log(JSON.stringify(response));
-                    setErrorMessage('Database Error 1');
-                    throw new Error('Database Error 1');
+                    console.log('before error message');
+                    return response.json().then(
+                        errorData => { 
+                            const message = errorData.errors[0].msg;
+                            console.log('error message ' + JSON.stringify(errorData));
+                            throw new Error(message)});
                 }
                 return response.json();
             })    
@@ -49,8 +50,8 @@ function Registration({appState ,setAppState}) {
                 });   
             })
             .catch(error => {
-                console.log("error = " + JSON.stringify(error));
-                setErrorMessage('Database Error 2');
+                console.log("error 2 = " + error);
+                setErrorMessage(error.message);
             })   
     }
 

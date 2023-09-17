@@ -1,11 +1,11 @@
 import AppState from '../../AppState';
 import './LoginStatus.css'
 
-function LoginStatus({appState, setAppState}) {
-    console.log( "user =" + JSON.stringify(appState.user))
+function LoginStatus({appState, setAppState}){
+
     if(appState.user === undefined){
         return (
-            <div onClick={loginHandler} className='header-bar__login-status'> Login Status </div>
+            <div onClick={loginHandler} className='header-bar__login-status'> Login </div>
         );
     } else{
         return (

@@ -10,8 +10,7 @@ import './PageBody.css';
 
 
  function PageBody({appState ,setAppState}) {
-    
-    console.log("display mode =" + appState.displayMode);
+
     if (appState.displayMode === AppState.DISPLAY_MODE_LIST) {
         return (
             <BookList appState={appState} setAppState={setAppState} />
@@ -33,7 +32,7 @@ import './PageBody.css';
         );
     }
     else if (appState.displayMode === AppState.DISPLAY_MODE_REGISTRATION) {
-        console.log("page body registration");
+        
         return (
             <Registration appState={appState} setAppState={setAppState} />
         );
