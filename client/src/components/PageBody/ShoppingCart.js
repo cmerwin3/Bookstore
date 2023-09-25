@@ -44,45 +44,67 @@ function ShoppingCart({appState ,setAppState}) {
         });
     }
 
+    function checkoutHandler(){
+        if (appState.user === undefined) {
+            setAppState((previousAppState) => {
+                let newAppState = previousAppState.clone();
+                newAppState.displayMode = AppState.DISPLAY_MODE_LOGIN
+                return newAppState;
+            });
+        } else {
+            setAppState((previousAppState) => {
+                let newAppState = previousAppState.clone();
+                newAppState.displayMode = AppState.DISPLAY_MODE_CHECKOUT
+                return newAppState;
+            });
+        }   
+    }
+
     if (appState.shoppingCart.length === 0) { 
-        return (
-            <div className='shopping-cart'>
-                <div className='warning-message'>Your cart is empty.</div>
-                <Home appState={appState} setAppState={setAppState}></Home>
-            </div>
-        )
+        setAppState((previousAppState) => {
+            let newAppState = previousAppState.clone();
+            newAppState.homeMessage = "Your cart is empty";
+            newAppState.displayMode = AppState.DISPLAY_MODE_HOME;
+            return newAppState;
+        });
+    }
+
+    let buttonText = "Checkout"
+    if(appState.user === undefined){
+        buttonText = "Login to Checkout"
     }
 
 
     return (
-    <div className='shopping-cart'>
-        <h1>Shopping Cart Page</h1> 
-        {appState.shoppingCart.map((item, i) => 
-        <div className='shopping-cart__item-container' key={i}> 
-            <div className='shopping-cart__item-image'> Image Here</div>
-            <div className='shopping-cart__item-text'>
-                <div className='shopping-cart__item-title' 
-                    onClick = {() => {selectBookHandler(item.book)}}>{item.book.title}</div>
-                <div>${item.book.price}</div>
-                <div>{item.book.author_firstname} {item.book.author_lastname}</div>
-                <div>{item.book.genre}</div>
-                <div> quantity  
-                    <select name='quantity' id={i}
-                            defaultValue={item.quantity} 
-                            onChange={(e) => updateQuantityHandler(i, e.target.value)}>
-                        <option value='1'>1</option>
-                        <option value='2'>2</option>
-                        <option value='3'>3</option>
-                        <option value='4'>4</option>
-                        <option value='5'>5</option>
-                    </select>
-                </div>
-                <div className= 'shopping-cart__delete-button clickable-text'
-                    onClick = {() => {deleteBookHandler(item.book)}}>delete</div>
-            </div>
-        </div>)}
-
-    </div>
-)
-}
+        <div className='shopping-cart'>
+            <h1>Shopping Cart Page</h1> 
+            {appState.shoppingCart.map((item, i) => 
+                <div className='shopping-cart__item-container color-2-base' key={i}> 
+                    <div className='shopping-cart__item-image'> Image Here</div>
+                    <div className='shopping-cart__item-text'>
+                        <div className='shopping-cart__item-title' 
+                            onClick = {() => {selectBookHandler(item.book)}}>{item.book.title}</div>
+                        <div>${item.book.price}</div>
+                        <div>{item.book.author_firstname} {item.book.author_lastname}</div>
+                        <div>{item.book.genre}</div>
+                        <div> quantity  
+                            <select name='quantity' id={i}
+                                    defaultValue={item.quantity} 
+                                    onChange={(e) => updateQuantityHandler(i, e.target.value)}>
+                                <option value='1'>1</option>
+                                <option value='2'>2</option>
+                                <option value='3'>3</option>
+                                <option value='4'>4</option>
+                                <option value='5'>5</option>
+                            </select>
+                        </div>
+                        <div className= 'shopping-cart__delete-button clickable-text button-style'
+                            onClick = {() => {deleteBookHandler(item.book)}}>Remove from Cart</div>
+                        </div>
+                </div>)
+            }
+            <div onClick={()=> {checkoutHandler()}} className='button-style'>{buttonText}</div>
+        </div>
+    )
+}  
 export default ShoppingCart;

@@ -57,6 +57,7 @@ function BookItem({appState ,setAppState}) {
                     <div>{book.author_lastname} {book.author_firstname}</div>
                     <div>{book.genre}</div>
                     <div>{book.synopsis}</div>
+                    <span>qty</span>
                     <select name='quantity' id='quantity' 
                             onChange={(e) => setQuantity(e.target.value)}>
                         <option value='1'>1</option>
@@ -65,7 +66,7 @@ function BookItem({appState ,setAppState}) {
                         <option value='4'>4</option>
                         <option value='5'>5</option>
                     </select>
-                    <button onClick = {() => {addToCart(book)}}>Add To Cart</button>
+                    <button className='button-style' onClick = {() => {addToCart(book)}}>Add To Cart</button>
                     <ReactModal 
                         isOpen={modalState}
                         className= "book-item__modal"
@@ -73,7 +74,7 @@ function BookItem({appState ,setAppState}) {
                         ariaHideApp={false}>
                             
                         <div>Item added to cart.</div>
-                        <button onClick={() => {handleCloseModal()}}>Close Modal</button>
+                        <button className='button-style' onClick={() => {handleCloseModal()}}>Close Modal</button>
                     </ReactModal>
                 </div>
             </div>

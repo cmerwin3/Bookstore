@@ -5,6 +5,7 @@ import './Registration.css';
 
 
 function Registration({appState ,setAppState}) {
+    const [errorMessage, setErrorMessage]= useState('');
     const [fields, setFields]= useState({
         email : '',
         password : '',
@@ -16,7 +17,7 @@ function Registration({appState ,setAppState}) {
         zip : ''
     });
     
-    const [errorMessage, setErrorMessage]= useState('');
+    
 
     function registrationHandler(event) {
         event.preventDefault();
@@ -45,6 +46,7 @@ function Registration({appState ,setAppState}) {
                 setAppState((previousAppState) => {
                     let newAppState = previousAppState.clone();
                     newAppState.user = data;
+                    newAppState.homeMessage = "Thank you for registering your account"
                     newAppState.displayMode = AppState.DISPLAY_MODE_HOME;
                     return newAppState;
                 });   
@@ -210,7 +212,7 @@ function Registration({appState ,setAppState}) {
                         placeholder='zip' 
                         onChange={(event) => changeHandler(event)}
                 />
-                <button type='submit' disabled={!validateFields()}>Register</button>
+                <button type='submit' className='button-style' disabled={!validateFields()}>Register</button>
             </form>
         </div> 
     );

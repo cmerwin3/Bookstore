@@ -35,7 +35,7 @@ function Login({appState ,setAppState}) {
                 setAppState((previousAppState) => {
                     let newAppState = previousAppState.clone();
                     newAppState.user = data;
-                    // TODO Update to return user back to previous display page dynamically 
+                    newAppState.homeMessage = "Thank you for logging in " + data.first_name;
                     newAppState.displayMode = AppState.DISPLAY_MODE_HOME;
                     return newAppState;
                 });   
@@ -80,7 +80,8 @@ function Login({appState ,setAppState}) {
                         placeholder='password' 
                         onChange={(e) => setLoginPassword(e.target.value)}
                 />
-                <button type='submit'>Submit</button>
+                <br></br>
+                <button type='submit' className='button-style'>Submit</button>
             </form>
             <div className="login__register">Not a member yet? 
                 <span onClick={() => {registrationHandler()}} className="login__register-link clickable-text">

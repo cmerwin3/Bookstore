@@ -13,6 +13,7 @@ class AppState {
         this.bookList = [];
         this.bookItem = undefined;
         this.shoppingCart = [];
+        this.homeMessage = undefined;
     }
     
     clone() {
@@ -23,6 +24,8 @@ class AppState {
         newAppState.bookList = this.bookList;
         newAppState.bookItem = this.bookItem;
         newAppState.shoppingCart = this.shoppingCart;
+        // home message is only used upon load of home page and othewise set to undefined
+        newAppState.homeMessage = undefined;
 
         return newAppState;
     }

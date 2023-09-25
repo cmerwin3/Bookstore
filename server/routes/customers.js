@@ -28,7 +28,7 @@ router.post('/customers', bodyParser.json(),
         };
 
         await Customer.create(req.body)
-          .then(function(newCustomer){
+          .then(function(newCustomer) {
             res.json(newCustomer);
         }).catch(function (error) {
             res.status(400).send({errors: error});

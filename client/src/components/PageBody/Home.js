@@ -35,6 +35,11 @@ import './Home.css'
 
     return (
         <div className='home'> 
+            {appState.homeMessage != undefined &&
+                <div className="warning-message">
+                    {appState.homeMessage}
+                </div>
+            }
             <h1 className='color-1-head'>Home Page</h1> 
             {homeBookList.map((item, i) => 
             <div className='home__item-container color-2-base' key={i}> 

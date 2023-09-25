@@ -4,8 +4,9 @@ import BookList from "./BookList";
 import BookItem from "./BookItem";
 import Login from "./Login";
 import Registration from "./Registration"
-import UserInfo from "../HeaderBar/UserInfo";
+import UserInfo from "./UserInfo";
 import ShoppingCart from "./ShoppingCart";
+import Checkout from "./Checkout";
 import './PageBody.css';
 
 
@@ -40,6 +41,11 @@ import './PageBody.css';
     else if (appState.displayMode === AppState.DISPLAY_MODE_USER_INFO) {
         return (
             <UserInfo appState={appState} setAppState={setAppState} />
+        );
+    }
+    else if (appState.displayMode === AppState.DISPLAY_MODE_CHECKOUT) {
+        return (
+            <Checkout appState={appState} setAppState={setAppState} />
         );
     }
     else { // Default to Home Page
