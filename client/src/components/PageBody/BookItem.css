@@ -9,17 +9,21 @@
     border-radius: 20px;
 }
 
-.book-item__item-image {
-    margin: 5px;
-}
-
-.book-item__item-text {
-    margin: 5px;
+.book-item__text_container {
+    margin-left: 20px;
 }
 
 .book-item__item-title {
     font-size: 20px;
     font-weight: bold;
+}
+
+.book-item__price-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 20px;
 }
 
 .book-item__modal {

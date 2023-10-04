@@ -1,5 +1,6 @@
 import AppState from "../../AppState";
 import Home from "./Home"
+import {BOOK_IMAGE_URL} from "../../constants";
 import "./ShoppingCart.css"
 
 //TODO display items quantity from shopping cart as current value of quantity on shopping cart page
@@ -80,13 +81,16 @@ function ShoppingCart({appState ,setAppState}) {
             <h1>Shopping Cart Page</h1> 
             {appState.shoppingCart.map((item, i) => 
                 <div className='shopping-cart__item-container color-2-base' key={i}> 
-                    <div className='shopping-cart__item-image'> Image Here</div>
+                    <div className='book-image-small-container'>
+                        <img className='book-image-small'
+                                src={`${BOOK_IMAGE_URL}${item.book.id}.jpg`}></img>
+                    </div>
                     <div className='shopping-cart__item-text'>
                         <div className='shopping-cart__item-title' 
                             onClick = {() => {selectBookHandler(item.book)}}>{item.book.title}</div>
+                        <div>Author: {item.book.author_firstname} {item.book.author_lastname}</div>
+                        <div>Genre: {item.book.genre}</div>
                         <div>${item.book.price}</div>
-                        <div>{item.book.author_firstname} {item.book.author_lastname}</div>
-                        <div>{item.book.genre}</div>
                         <div> quantity  
                             <select name='quantity' id={i}
                                     defaultValue={item.quantity} 

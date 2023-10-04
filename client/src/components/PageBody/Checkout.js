@@ -1,6 +1,6 @@
 import AppState from "../../AppState";
 import {useState, useEffect, Fragment} from 'react';
-import { REST_URL } from "../../constants";
+import {REST_URL} from "../../constants";
 import './Checkout.css'
 
 function Checkout({appState ,setAppState}) {
@@ -156,12 +156,11 @@ function Checkout({appState ,setAppState}) {
                 <div>{user.first_name} {user.last_name}</div>
                 <div>{user.address}</div>
                 <div>{user.city}, {user.state} {user.zip}</div>
-                <div>{user.email}</div>
             </div>
             <h2>Shopping Cart</h2>
             <div className='checkout__cart-container color-2-base'>
                 <div className='checkout__grid-header'>Books</div>
-                <div className='checkout__grid-header checkout__span-columns-2'>Qty</div>
+                <div className='checkout__grid-header span-columns-2'>Qty</div>
                 <div className='checkout__grid-header'>Price</div>
                 {cart.map((item, i) => 
                     <Fragment key={i}>
@@ -171,11 +170,11 @@ function Checkout({appState ,setAppState}) {
                         <div>${item.book.price}</div>
                     </Fragment>
                 )}
-                <div className='checkout__grid-header checkout__span-columns-3'>Subtotal</div>
+                <div className='checkout__grid-header span-columns-3'>Subtotal:</div>
                 <div>${totalFields.sub_total}</div>
-                <div className='checkout__grid-header checkout__span-columns-3'>Tax</div>
+                <div className='checkout__grid-header span-columns-3'>Tax:</div>
                 <div>${totalFields.tax}</div>
-                <div className='checkout__grid-header checkout__span-columns-3'>Total</div>
+                <div className='checkout__grid-header span-columns-3'>Total:</div>
                 <div>${totalFields.total}</div>
             </div>
             

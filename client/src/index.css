@@ -73,7 +73,9 @@ h2 {
 }
 
 .button-style {
-  padding: 5px 8px;
+  margin-top: 10px;
+  margin-left: 15px;
+  padding: 10px;
   border: 2px solid black;  
   border-radius: 20px;
   background-color: #94618E ;
@@ -86,4 +88,47 @@ h2 {
   color: black;
 }
 
+.label-bold {
+  font-weight: bold;
+}
+
+.label_child {
+  font-weight: initial;
+}
+
+.span-columns-1 {
+  grid-column: span 1;
+}
+
+.span-columns-2 {
+  grid-column: span 2;
+}
+
+.span-columns-3 {
+  grid-column: span 3;
+}
+
+.book-image-large-container{
+  padding: 5px;
+  height: 330px;
+  width: 330px;
+}
+
+.book-image-large {
+  border: 2px solid #94618E;
+  width: 330px;
+  height: 330px;
+}
+
+.book-image-small-container{
+  padding: 5px;
+  height: 150px;
+  width: 150px;
+}
+
+.book-image-small {
+  border: 2px solid #94618E;
+  width: 150px;
+  height: 150px;
+}
 

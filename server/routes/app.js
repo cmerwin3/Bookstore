@@ -6,10 +6,12 @@ const books = require('./books');
 const customers = require('./customers');
 const orders = require('./orders');
 
-
 app.use(books);
 app.use(customers);
 app.use(orders);
+app.use(express.static(__dirname + '/../static'));
+
+
 
 app.get('/tax', async (req, res) => {
     const TaxTable = await Tax.findAll();

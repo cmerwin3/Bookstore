@@ -1,6 +1,6 @@
 import AppState from "../../AppState";
 import {useState, useEffect} from 'react';
-import { REST_URL } from "../../constants";
+import { REST_URL, BOOK_IMAGE_URL } from "../../constants";
 import './Home.css'
 
 
@@ -43,13 +43,16 @@ import './Home.css'
             <h1 className='color-1-head'>Home Page</h1> 
             {homeBookList.map((item, i) => 
             <div className='home__item-container color-2-base' key={i}> 
-                <div className='home__item-image'> Image Here</div>
+                <div className='book-image-small-container'>
+                    <img className='book-image-small'
+                            src={`${BOOK_IMAGE_URL}${item.id}.jpg`}></img>
+                </div>
                 <div className='home__item-text'>
                     <div className='home__item-title color-2-action' 
                         onClick = {() => {selectBookHandler(item)}}>{item.title}</div>
+                    <div>Author: {item.author_firstname} {item.author_lastname}</div>
+                    <div>Genre: {item.genre}</div>
                     <div>${item.price}</div>
-                    <div>{item.author_firstname} {item.author_lastname}</div>
-                    <div>{item.genre}</div>
                 </div>
             </div>)}
 
