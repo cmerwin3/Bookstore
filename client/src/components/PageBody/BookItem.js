@@ -5,9 +5,6 @@ import {useState} from 'react';
 import './BookItem.css'
 
 
-//TODO create helper function to update shopping cart quantity
-//TODO react select information
-
 function BookItem({appState ,setAppState}) {
     const [quantity, setQuantity]= useState(1);
     const [modalState, setModalState]= useState(false);

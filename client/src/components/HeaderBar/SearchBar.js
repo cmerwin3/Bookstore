@@ -12,8 +12,11 @@ function SearchBar({appState, setAppState}) {
     const [genreList, setGenreList] = useState([]);
     const [keyword, setKeyword]= useState('');
 
+
+    // Load in genre list from server 
     useEffect(() => {    
         if(genreList.length === 0){
+            // setGenreList(['Test_Biographies']);
             fetch(REST_URL + 'genres')
             .then((response) => response.json())    
             .then((data) => {

@@ -5,9 +5,6 @@ import "./ShoppingCart.css"
 
 //TODO display items quantity from shopping cart as current value of quantity on shopping cart page
 //TODO if cart is empty grey out icon with hover over message or modal popup
-//TODO create helper function to update shopping cart quantity
-//TODO update delete button CSS to be more readable as button and change the cursor 
-
 
 function ShoppingCart({appState ,setAppState}) {
     

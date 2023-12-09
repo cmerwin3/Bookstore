@@ -9,6 +9,8 @@ import './Home.css'
     const [homeBookList, setHomeBookList]= useState([]);
     
     useEffect(() => { 
+
+        // Reconfigure an if else that first checks appState for a booklist to display then if not found randomize
         if(homeBookList.length === 0){
             const restUrl = new URL(`${REST_URL}books`);
             
@@ -21,7 +23,6 @@ import './Home.css'
                     setHomeBookList(data);
                 })
         }
-        
     });
 
     function selectBookHandler(item) {

@@ -4,7 +4,7 @@ import {BOOK_IMAGE_URL} from '../../constants.js';
 import './BookList.css'
 
 
- function BookList({appState ,setAppState}) {
+ function BookList({appState, setAppState}) {
     
     function selectBookHandler(item) {
         setAppState((previousAppState) => {

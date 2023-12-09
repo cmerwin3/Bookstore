@@ -10,7 +10,7 @@ import Checkout from "./Checkout";
 import './PageBody.css';
 
 
- function PageBody({appState ,setAppState}) {
+ function PageBody({appState, setAppState}) {
 
     if (appState.displayMode === AppState.DISPLAY_MODE_LIST) {
         return (
