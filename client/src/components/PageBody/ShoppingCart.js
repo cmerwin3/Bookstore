@@ -3,8 +3,7 @@ import Home from "./Home"
 import {BOOK_IMAGE_URL} from "../../constants";
 import "./ShoppingCart.css"
 
-//TODO display items quantity from shopping cart as current value of quantity on shopping cart page
-//TODO if cart is empty grey out icon with hover over message or modal popup
+
 
 function ShoppingCart({appState ,setAppState}) {
     

@@ -36,7 +36,7 @@ function SearchBar({appState, setAppState}) {
             restUrl.searchParams.append('genre', `${encodeURIComponent(genre)}`);
         }
 
-        if (keyword !== undefined) {
+        if (keyword !== undefined && keyword.length > 0 ) {
             restUrl.searchParams.append('keyword', `${encodeURIComponent(keyword)}`); 
         }
 

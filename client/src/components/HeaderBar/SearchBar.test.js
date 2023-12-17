@@ -4,7 +4,6 @@ import userEvent from '@testing-library/user-event';
 import {act} from 'react-dom/test-utils';
 import AppState from '../../AppState'; 
 import SearchBar from './SearchBar';
-import REST_URL from "../../constants";
 
 
 let testBookList = [
@@ -94,20 +93,24 @@ test('update appState when a user selects a genre and clicks search', async () =
     const combobox = await screen.findByRole('combobox');
     const option = await screen.findByRole('option', {name: 'Test_Culinary'});
     const searchButton = await screen.findByText('Search');
-    const user = userEvent.setup();
+    // const user = userEvent.setup();
     
-    act( async() => {
-        await user.selectOptions(combobox, option);
-        await user.click(searchButton);
+    act(() => {
+
+        userEvent.selectOptions(combobox, option);
+        userEvent.click(searchButton);
     });
 
 
     //Assert
+    // Await for allow the appstate to update before the expect is executed
+    await waitFor(() => {
+        expect(newAppState.displayMode).toBe(AppState.DISPLAY_MODE_LIST);
+        expect(newAppState.bookList).toBeDefined();
+        expect(newAppState.bookList[0].id).toBe(testBookList[0].id);
+        expect(newAppState.bookList[1].id).toBe(testBookList[1].id);
+    });
 
-    expect(newAppState.displayMode).toBe(AppState.DISPLAY_MODE_LIST);
-    expect(newAppState.bookList).toBeDefined();
-    expect(newAppState.bookList[0].id).toBe(testBookList[0].id);
-    expect(newAppState.bookList[1].id).toBe(testBookList[1].id);
     
 });
 
